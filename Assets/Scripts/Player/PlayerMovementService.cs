@@ -28,7 +28,11 @@ public class PlayerMovementService : MonoBehaviour
     private Vector3 groundNormal;
 
     private float fallTimer;
-    
+
+    public Vector3 CurrentPlayerVelocity => playerRb.velocity;
+
+    public bool IsPlayerOnGround => isPlayerOnGround;
+
     private void Update()
     {
         PlayerGroundCheckAlgorithm();
