@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-public class PlayerMovementService : MonoBehaviour
+public sealed class PlayerMovementService : MonoBehaviour
 {
     [SerializeField] private Transform playerT;
     [SerializeField] private Rigidbody playerRb;
@@ -28,6 +27,8 @@ public class PlayerMovementService : MonoBehaviour
     private Vector3 groundNormal;
 
     private float fallTimer;
+    
+    public bool isManageActive = true;
 
     public Vector3 CurrentPlayerVelocity => playerRb.velocity;
 
@@ -60,6 +61,9 @@ public class PlayerMovementService : MonoBehaviour
         MoveAlgorithm();
         void MoveAlgorithm()
         {
+            if(!isManageActive)
+                return;
+                
             var playerMoveVector = Vector3.zero;
 
             playerMoveVector = GetPlayerWalkVector();
@@ -96,6 +100,9 @@ public class PlayerMovementService : MonoBehaviour
         JumpAlgorithm();
         void JumpAlgorithm()
         {
+            if(!isManageActive)
+                return;
+                
             if (Input.GetKeyDown(KeyCode.Space) && (isPlayerOnGround || groundIsIgnored))
             {
                 playerT.position += Vector3.up * (groundCheckDistance + 0.005f);
