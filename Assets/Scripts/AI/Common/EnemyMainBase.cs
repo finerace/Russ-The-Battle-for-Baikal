@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public abstract class EnemyMainBase : HealthBase
+public class EnemyMainBase : HealthBase
 {
     [SerializeField] protected Transform enemyT;
+    public Transform EnemyT => enemyT;
     [SerializeField] protected Rigidbody enemyRb;
+    public Rigidbody EnemyRb => enemyRb;
     [SerializeField] protected Transform groundCheckT;
     [SerializeField] protected EnemyAttackBase enemyAttackBase;
     [SerializeField] protected float groundCheckDistance = 0.2f;
@@ -47,6 +49,9 @@ public abstract class EnemyMainBase : HealthBase
     
     [SerializeField] private float onDiedDrag = 4;
 
+    protected bool isTargetVisible;
+    public bool IsTargetVisible => isTargetVisible;
+
     public float ToTargetDistance => Vector3.Distance(targetT.position, enemyT.position);
     
     private void Start()
@@ -68,6 +73,9 @@ public abstract class EnemyMainBase : HealthBase
         }
         void CheckGround()
         {
+            if(isDied)
+                return;
+            
             var ray = new Ray(groundCheckT.position,Vector3.down);
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo, groundCheckDistance, groundLayerMask))
@@ -97,9 +105,9 @@ public abstract class EnemyMainBase : HealthBase
         FindTarget();
         void FindTarget()
         {
-            if(isAnnoyed)
+            if(isDied)
                 return;
-
+            
             var toTargetDistance = Vector3.Distance(enemyT.position,targetT.position);
 
             if (toTargetDistance <= annoyedDistance)
@@ -116,9 +124,15 @@ public abstract class EnemyMainBase : HealthBase
 
             var wallCheck = Physics.Raycast(wallCheckRay,toTargetDistance,wallLayerMask);
 
+            isTargetVisible = !wallCheck;
+
             if (!wallCheck)
                 SetAnnoyed();
         }
+
+        OnTakeDamage += (damage) =>  {
+            SetAnnoyed();
+        };
     }
 
     protected void SetAnnoyed()
@@ -186,7 +200,7 @@ public abstract class EnemyMainBase : HealthBase
         AttackCheck();
         void AttackCheck()
         {
-            if (toTargetDistance <= attackDistance && !enemyAttackBase.IsAttack)
+            if (toTargetDistance <= attackDistance && !enemyAttackBase.IsAttack && isTargetVisible)
                 enemyAttackBase.Attack();
         }
     }
@@ -195,9 +209,10 @@ public abstract class EnemyMainBase : HealthBase
     {
         if(isDied)
             return;
-
+        
         enemyRb.useGravity = true;
         enemyRb.drag = onDiedDrag;
+        gameObject.layer = 7;
         
         isDied = true;
     }

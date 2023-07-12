@@ -24,6 +24,11 @@ public class PlayerCombatService : MonoBehaviour
 
     [Space] 
     
+    [SerializeField] private ParticleSystem wallAttackEffect;
+    [SerializeField] private ParticleSystem enemyAttackEffect;
+
+    [Space]
+    
     public bool isManageActive = true;
     
     public bool IsAttack => isAttack;
@@ -49,7 +54,38 @@ public class PlayerCombatService : MonoBehaviour
 
         if (Physics.Raycast(attackRay, out RaycastHit raycastHit, attackDistance, attackLayerMask))
         {
-            if(raycastHit.collider.gameObject.TryGetComponent(out IHealth health))
+            var hitGameObject = raycastHit.collider.gameObject;
+
+            EffectWork();
+            void EffectWork()
+            {
+                switch (hitGameObject.layer)
+                {
+                    case 0:
+                    {
+                        StartEffect(wallAttackEffect);
+                        break;
+                    }
+
+                    case 6:
+                    {
+                        StartEffect(enemyAttackEffect);
+                        break;
+                    }
+                }
+
+                void StartEffect(ParticleSystem effect)
+                {
+                    var effectT = effect.gameObject.transform;
+                    
+                    effectT.position = raycastHit.point;
+                    effectT.rotation = Quaternion.LookRotation(raycastHit.normal);
+                    
+                    effect.Play();
+                }
+            }
+
+            if(hitGameObject.TryGetComponent(out IHealth health))
                 health.TakeDamage(damage);
 
             if (raycastHit.rigidbody != null)

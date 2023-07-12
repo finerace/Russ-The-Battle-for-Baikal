@@ -723,7 +723,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5980243491559514433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef7303529ac4e444ebd32ca0f7503fd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 725e764d45bec65439f3befbdbdfbefb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 15
@@ -732,24 +732,24 @@ MonoBehaviour:
   enemyRb: {fileID: 6464292097201503225}
   groundCheckT: {fileID: 8438912009810574896}
   enemyAttackBase: {fileID: 6464292097201503228}
-  groundCheckDistance: 0.2
+  groundCheckDistance: 0.35
   speed: 0.5
-  rotationSpeed: 4
+  rotationSpeed: 2
   fallingSpeed: 1
   isDied: 0
-  attackDistance: 3
+  attackDistance: 4
   maxWalkTargetDistance: 3
-  annoyedDistance: 3
+  annoyedDistance: 4
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  dotFov: 0.5
+  dotFov: 0.75
   isAnnoyed: 0
   targetT: {fileID: 0}
-  onDiedDrag: 2
+  onDiedDrag: 4
 --- !u!114 &6464292097201503228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -765,6 +765,9 @@ MonoBehaviour:
   enemyMain: {fileID: 6464292097201503231}
   attackDamage: 15
   damageAllowDistance: 5
+  damageForce: 5
+  preAttackDelay: 0.3
+  postAttackDelay: 0.5
 --- !u!114 &6464292097201503229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -951,7 +954,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8438912009810574899}
   m_LocalRotation: {x: 0.70710707, y: -0, z: -0, w: 0.70710653}
-  m_LocalPosition: {x: 0, y: -0.06, z: -0.0524}
+  m_LocalPosition: {x: 0, y: 0.026, z: -0.052}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -11,6 +11,10 @@ public abstract class EnemyAttackBase : MonoBehaviour
     protected bool isAttack;
     public bool IsAttack => isAttack;
     
+    protected bool isAnimationAttack;
+    public bool IsAnimationAttack => isAnimationAttack;
+
+    
     public Action OnAttack;
 
     public void Attack()

@@ -20,7 +20,7 @@ public class EnemyAnimation : MonoBehaviour
 
     private void Update()
     {
-        enemyAnimator.SetBool(IsAttack,enemyAttackBase.IsAttack);
+        enemyAnimator.SetBool(IsAttack,enemyAttackBase.IsAnimationAttack);
     }
 
     private void SetDie()
