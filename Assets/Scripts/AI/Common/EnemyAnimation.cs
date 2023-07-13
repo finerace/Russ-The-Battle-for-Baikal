@@ -15,22 +15,16 @@ public class EnemyAnimation : MonoBehaviour
     private void Start()
     {
         enemyMainBase.OnDie += SetDie;
-        enemyMainBase.OnAnnoyed += SetRun;
     }
 
     private void Update()
     {
         enemyAnimator.SetBool(IsAttack,enemyAttackBase.IsAnimationAttack);
+        enemyAnimator.SetBool(IsRun,enemyMainBase.EnemyRb.velocity.magnitude > 0.25f);
     }
 
     private void SetDie()
     {
         enemyAnimator.SetBool(IsDie,true);
     }
-
-    private void SetRun()
-    {
-        enemyAnimator.SetBool(IsRun,true);
-    }
-    
 }

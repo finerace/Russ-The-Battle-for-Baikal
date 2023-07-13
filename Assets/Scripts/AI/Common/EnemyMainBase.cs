@@ -146,63 +146,70 @@ public class EnemyMainBase : HealthBase
         if(isDied)
             return;
 
-        var toTargetDistance = Vector3.Distance(targetT.position, enemyT.position);
-
         MovementAlgorithm();
         void MovementAlgorithm()
         {
             FallAlgorithm();
-            void FallAlgorithm()
-            {
-                if(!isFly)
-                    return;
-                    
-                var smooth = 100;
-                enemyRb.velocity += Vector3.down * Time.deltaTime * fallingSpeed * smooth;    
-            }
 
             if(targetT == null || !isAnnoyed)
                 return;
 
             RotationToTarget();
-            void RotationToTarget()
-            {
-                var timeStep = Time.deltaTime * rotationSpeed;
 
-                var toTargetVector = targetT.position - enemyT.position;
-
-                var enemyRotationQ = enemyT.rotation;
-                
-                var enemyRotationE = enemyRotationQ.eulerAngles;
-                enemyRotationE.y = 
-                    Quaternion.Lerp(enemyRotationQ,Quaternion.LookRotation(toTargetVector),timeStep).eulerAngles.y;
-                
-                enemyT.rotation = Quaternion.Euler(enemyRotationE);
-            }
-
-            Walk();
-            void Walk()
-            {
-                if(toTargetDistance <= maxWalkTargetDistance || enemyAttackBase.IsAttack)
-                    return;
-                
-                var smooth = 100;
-                var walkDirectionClear = enemyT.forward;
-
-                walkDirectionClear -= Vector3.Dot(walkDirectionClear, groundNormal.normalized) * groundNormal;
-                
-                var walkDirection = walkDirectionClear * speed * Time.deltaTime * smooth;
-                
-                enemyRb.velocity += walkDirection;
-            }
+            WalkAlgorithm();
         }
 
         AttackCheck();
-        void AttackCheck()
-        {
-            if (toTargetDistance <= attackDistance && !enemyAttackBase.IsAttack && isTargetVisible)
-                enemyAttackBase.Attack();
-        }
+    }
+    
+    protected virtual void FallAlgorithm()
+    {
+        if(!isFly)
+            return;
+                    
+        var smooth = 100;
+        enemyRb.velocity += Vector3.down * Time.deltaTime * fallingSpeed * smooth;    
+    }
+
+    protected virtual void RotationToTarget()
+    {
+        var timeStep = Time.deltaTime * rotationSpeed;
+
+        var toTargetVector = targetT.position - enemyT.position;
+
+        var enemyRotationQ = enemyT.rotation;
+                
+        var enemyRotationE = enemyRotationQ.eulerAngles;
+        enemyRotationE.y = 
+            Quaternion.Lerp(enemyRotationQ,Quaternion.LookRotation(toTargetVector),timeStep).eulerAngles.y;
+                
+        enemyT.rotation = Quaternion.Euler(enemyRotationE);
+    }
+
+    protected virtual void WalkAlgorithm()
+    {
+        if(!IsWalkAllow())
+            return;
+                
+        var smooth = 100;
+        var walkDirectionClear = enemyT.forward;
+
+        walkDirectionClear -= Vector3.Dot(walkDirectionClear, groundNormal.normalized) * groundNormal;
+                
+        var walkDirection = walkDirectionClear * speed * Time.deltaTime * smooth;
+                
+        enemyRb.velocity += walkDirection;
+    }
+
+    protected virtual bool IsWalkAllow()
+    {
+        return !((ToTargetDistance <= maxWalkTargetDistance || isTargetVisible) || enemyAttackBase.IsAttack);
+    }
+    
+    protected virtual void AttackCheck()
+    {
+        if (ToTargetDistance <= attackDistance && !enemyAttackBase.IsAttack && isTargetVisible)
+            enemyAttackBase.Attack();
     }
 
     public override void Died()

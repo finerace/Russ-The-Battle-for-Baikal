@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public sealed class YellowLizardAttack : DefaultMeleeAttack
+public sealed class CyanLizardAttack : DefaultMeleeAttack
 {
     [SerializeField] private float jerkForce;
     private float jerkTimer;

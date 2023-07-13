@@ -126,12 +126,6 @@ public class MenuSystem : MonoBehaviour
             throw new InvalidDataException($"Open menu has failed!\n" + $"Menu ID {menuID} is repeated!");
         }
         
-        if(foundChildMenuData == null && foundParentMenuData == null)
-        {
-            print
-                ($"Open menu has failed! \n" + $"The given ID {menuID} is not found!");
-        }
-
         if(foundParentMenuData != null)
         {
             currentMenuData = foundParentMenuData;
