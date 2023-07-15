@@ -9,9 +9,14 @@ public class PlayerRotationService : MonoBehaviour
     [Space] 
     
     [SerializeField] private float sensitivity = 1f;
+
+    public bool isManageActive = true;
     
     private void Update()
     {
+        if(!isManageActive)
+            return;
+        
         var sensitivitySmooth = 100f;
         var timeSenseSmooth = sensitivity; //* sensitivitySmooth;
         
@@ -30,4 +35,6 @@ public class PlayerRotationService : MonoBehaviour
 
         else cameraT.localEulerAngles = new Vector3(lookX - mouseY, 0, 0);
     }
+    
+    
 }

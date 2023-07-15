@@ -9,6 +9,8 @@ public class MenuSystem : MonoBehaviour
 {
     [SerializeField] private ParentMenuData startMenuData;
     
+    [Space]
+    
     private string menusPath;
     private readonly List<MenuData> menusDataPath = new List<MenuData>();
     
@@ -21,11 +23,14 @@ public class MenuSystem : MonoBehaviour
     private Camera mainCamera;
     private bool isPlayerExist;
 
+    private PlayerMain _playerMain;
+    
     public MenuData CurrentMenuData => currentMenuData;
     
     private void Awake()
     {
         mainCamera = Camera.main;
+        _playerMain = FindObjectOfType<PlayerMain>();
         
         InitMenusData();
     }
@@ -69,6 +74,7 @@ public class MenuSystem : MonoBehaviour
         void InitMenu(MenuData menuData)
         {
             var spawnedMenu = Instantiate(menuData.menuPrefab);
+            spawnedMenu.GetComponent<Canvas>().worldCamera = mainCamera;
             SetMenuSystemRef();
             
             menuData.menu = spawnedMenu;
@@ -205,10 +211,17 @@ public class MenuSystem : MonoBehaviour
 
     private void SetMenuSpecialSettings(MenuData menuData)
     {
-
         SetCursorActive(menuData.isCursorActive);
 
         SetTimeScaleActive(menuData.isTimeNotActive);
+
+        if (isPlayerExist)
+        {
+            var playerManageActive =
+                !(menuData.isTimeNotActive || menuData.isCursorActive);
+
+            IsPlayerManageActive(playerManageActive);
+        }
 
         void SetCursorActive(bool state)
         {
@@ -229,12 +242,19 @@ public class MenuSystem : MonoBehaviour
         {
             Time.timeScale = state ? 0 : 1;
         }
+        
+        void IsPlayerManageActive(bool state)
+        {
+            if(isPlayerExist)
+                _playerMain.SetManageActive(state);
+        }
     }
 
     private void CloseAllMenus()
     {
         startMenuData.Disable();
     }
+
 }
 
 [System.Serializable]
