@@ -7,16 +7,6 @@ public sealed class PlayerMain :  HealthBase
     [SerializeField] private PlayerCombatService playerCombatService;
     [SerializeField] private PlayerRotationService playerRotationService;
     
-    private void Start()
-    {
-        OnTakeDamage += PrintHealth;
-        void PrintHealth(float damage)
-        {
-            print(health);
-        }
-    }
-
-
     public void SetManageActive(bool state)
     {
         playerMovementService.isManageActive = state;

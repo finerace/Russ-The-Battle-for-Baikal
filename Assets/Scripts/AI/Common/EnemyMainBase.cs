@@ -203,7 +203,7 @@ public class EnemyMainBase : HealthBase
 
     protected virtual bool IsWalkAllow()
     {
-        return !((ToTargetDistance <= maxWalkTargetDistance || isTargetVisible) || enemyAttackBase.IsAttack);
+        return !(ToTargetDistance <= maxWalkTargetDistance || enemyAttackBase.IsAttack);
     }
     
     protected virtual void AttackCheck()

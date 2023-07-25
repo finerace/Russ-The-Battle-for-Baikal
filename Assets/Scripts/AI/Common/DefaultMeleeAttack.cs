@@ -24,12 +24,12 @@ public class DefaultMeleeAttack : EnemyAttackBase
         if (enemyMain.ToTargetDistance <= damageAllowDistance && enemyMain.TargetT.TryGetComponent(out IHealth health))
         {
             health.TakeDamage(attackDamage);
-        }
-
-        if (enemyMain.TargetT.TryGetComponent(out Rigidbody rb))
-        {
-            var smooth = 100;
-            rb.AddForce(enemyMain.EnemyT.forward * damageForce * smooth, ForceMode.Impulse);
+            
+            if (enemyMain.TargetT.TryGetComponent(out Rigidbody rb))
+            {
+                var smooth = 100;
+                rb.AddForce(enemyMain.EnemyT.forward * damageForce * smooth, ForceMode.Impulse);
+            }
         }
 
         yield return new WaitForSeconds(postAttackDelay);

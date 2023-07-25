@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 8826830230451589331}
   - component: {fileID: 8826830230451589334}
   m_Layer: 6
-  m_Name: YellowLizard
+  m_Name: CyanLizard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -861,7 +861,7 @@ MonoBehaviour:
   damageAllowDistance: 2.6
   damageForce: 15
   preAttackDelay: 0.3
-  postAttackDelay: 1
+  postAttackDelay: 2
   jerkForce: 1.8
 --- !u!114 &8826830230451589331
 MonoBehaviour:

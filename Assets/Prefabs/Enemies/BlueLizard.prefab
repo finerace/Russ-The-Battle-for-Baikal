@@ -826,7 +826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMain: {fileID: 8884432635217009071}
   attackDamage: 15
-  damageAllowDistance: 6
+  damageAllowDistance: 5
   damageForce: 5
   preAttackDelay: 0.3
   postAttackDelay: 0.4
