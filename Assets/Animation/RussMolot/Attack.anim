@@ -74,7 +74,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: MainCamera/RussMolot
+    path: MainCamera/Weapon
   m_PositionCurves:
   - curve:
       serializedVersion: 2
@@ -100,7 +100,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: MainCamera/RussMolot
+    path: MainCamera/Weapon
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -112,14 +112,14 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 4046116092
+      path: 1505127185
       attribute: 4
       script: {fileID: 0}
       typeID: 4
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 4046116092
+      path: 1505127185
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -172,7 +172,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: MainCamera/RussMolot
+    path: MainCamera/Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -200,7 +200,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: MainCamera/RussMolot
+    path: MainCamera/Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -228,7 +228,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: MainCamera/RussMolot
+    path: MainCamera/Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -292,7 +292,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: MainCamera/RussMolot
+    path: MainCamera/Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -356,7 +356,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: MainCamera/RussMolot
+    path: MainCamera/Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -420,7 +420,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: MainCamera/RussMolot
+    path: MainCamera/Weapon
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
@@ -431,7 +431,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: MainCamera/RussMolot
+    path: MainCamera/Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -441,7 +441,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: MainCamera/RussMolot
+    path: MainCamera/Weapon
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -451,7 +451,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: MainCamera/RussMolot
+    path: MainCamera/Weapon
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

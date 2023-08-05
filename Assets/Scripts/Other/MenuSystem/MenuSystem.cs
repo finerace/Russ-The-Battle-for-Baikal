@@ -21,16 +21,15 @@ public class MenuSystem : MonoBehaviour
     public bool isBackActionLock = false;
     
     private Camera mainCamera;
-    private bool isPlayerExist;
 
-    private PlayerMain _playerMain;
+    private PlayerMain playerMain;
     
     public MenuData CurrentMenuData => currentMenuData;
     
     private void Awake()
     {
         mainCamera = Camera.main;
-        _playerMain = FindObjectOfType<PlayerMain>();
+        playerMain = FindObjectOfType<PlayerMain>();
         
         InitMenusData();
     }
@@ -38,22 +37,6 @@ public class MenuSystem : MonoBehaviour
     private void Start()
     {
         OpenStartMenu();
-        
-        FindPlayer();
-        
-        void FindPlayer()
-        {
-            try
-            {
-                isPlayerExist = true;
-            }
-            catch (Exception)
-            {
-                print("Menu System not found Player!");
-                isPlayerExist = false;
-            }
-        }
-
     }
 
     private void Update()
@@ -73,6 +56,9 @@ public class MenuSystem : MonoBehaviour
         
         void InitMenu(MenuData menuData)
         {
+            if(menuData.menu != null)
+                return;
+            
             var spawnedMenu = Instantiate(menuData.menuPrefab);
             spawnedMenu.GetComponent<Canvas>().worldCamera = mainCamera;
             SetMenuSystemRef();
@@ -215,13 +201,10 @@ public class MenuSystem : MonoBehaviour
 
         SetTimeScaleActive(menuData.isTimeNotActive);
 
-        if (isPlayerExist)
-        {
-            var playerManageActive =
-                !(menuData.isTimeNotActive || menuData.isCursorActive);
+        var playerManageActive =
+            !menuData.isCursorActive;
 
-            IsPlayerManageActive(playerManageActive);
-        }
+        SetPlayerManageActive(playerManageActive);
 
         void SetCursorActive(bool state)
         {
@@ -243,10 +226,9 @@ public class MenuSystem : MonoBehaviour
             Time.timeScale = state ? 0 : 1;
         }
         
-        void IsPlayerManageActive(bool state)
+        void SetPlayerManageActive(bool state)
         {
-            if(isPlayerExist)
-                _playerMain.SetManageActive(state);
+            playerMain.SetManageActive(state);
         }
     }
 
