@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public sealed class PlayerCombatService : MonoBehaviour,IOnRoundStart,IOnRoundEnd
+public sealed class PlayerCombatService : MonoBehaviour
 {
     [SerializeField] private Transform combatPointT;
     public Transform CombatPointT => combatPointT;
@@ -38,14 +38,16 @@ public sealed class PlayerCombatService : MonoBehaviour,IOnRoundStart,IOnRoundEn
 
     private void Start()
     {
-        OnRoundStart();
+        var gameEvens = FindObjectOfType<GameEvents>();
+        gameEvens.OnRoundStart += OnRoundStart;
+        gameEvens.OnRoundEnd += OnRoundEnd;
     }
 
     private void Update()
     {
         isAttack = cooldownTimer < attackTime;
         
-        if (Input.GetKey(KeyCode.Mouse0) && !isAttack)
+        if (Input.GetKey(KeyCode.Mouse0) && !isAttack && isManageActive)
         {
             cooldownTimer = 0;
             
@@ -82,8 +84,12 @@ public sealed class PlayerCombatService : MonoBehaviour,IOnRoundStart,IOnRoundEn
     public void PlayEffect(ParticleSystem effect,Vector3 pos)
     {
         effect.transform.position = pos;
-        //effect.transform.localRotation = Quaternion.Euler(-combatPointT.forward);
         
         effect.Play();
+    }
+
+    public void SetSelectedWeapon(WeaponData weaponData)
+    {
+        weaponPrefab = weaponData;
     }
 }

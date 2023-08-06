@@ -1,13 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public interface IOnRoundStart
+public class GameEvents : MonoBehaviour
 {
-    public void OnRoundStart();
-}
-
-public interface IOnRoundEnd
-{
-    public void OnRoundEnd();
+    public Action OnRoundStart;
+    public Action OnRoundEnd;
+    
+    public void StartRound()
+    {
+        OnRoundStart?.Invoke();
+    }
+    public void EndRound()
+    {
+        OnRoundEnd?.Invoke();
+    }
 }

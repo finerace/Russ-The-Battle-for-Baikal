@@ -20,5 +20,16 @@ public class PlayerMoneyService : MonoBehaviour
         }
     }
 
+    public bool TryTakeMoney(int moneyCount)
+    {
+        if (playerMoney < moneyCount) 
+            return false;
+        
+        PlayerMoney -= moneyCount;
+
+        return true;
+    }
+    
+    
     public event Action<int> OnMoneyChange;
 }
