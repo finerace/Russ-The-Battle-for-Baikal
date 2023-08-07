@@ -4,6 +4,9 @@ using UnityEngine;
 public sealed class PlayerCombatService : MonoBehaviour
 {
     [SerializeField] private Transform combatPointT;
+    [SerializeField] private Transform combatPointProjectilesT;
+    public Transform CombatPointProjectilesT => combatPointProjectilesT;
+    
     public Transform CombatPointT => combatPointT;
     
     [Space] 

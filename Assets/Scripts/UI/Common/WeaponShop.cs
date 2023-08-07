@@ -20,6 +20,7 @@ public class WeaponShop : MonoBehaviour
     
     [SerializeField] private TMP_Text buyButtonLabel;
     [SerializeField] private TMP_Text weaponNameLabel;
+    [SerializeField] private TMP_Text weaponDescLabel;
     [SerializeField] private TMP_Text weaponCostLabel;
     
     private void Start()
@@ -90,6 +91,7 @@ public class WeaponShop : MonoBehaviour
     private void SetLabels()
     {
         weaponNameLabel.text = focusedShopItem.Name;
+        weaponDescLabel.text = focusedShopItem.Desc;
         weaponCostLabel.text = focusedShopItem.Cost.ToString();
         
         if (focusedShopItem.ID == selectedShopItem.ID)

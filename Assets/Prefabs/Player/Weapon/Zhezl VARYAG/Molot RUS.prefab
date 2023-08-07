@@ -99,7 +99,7 @@ MonoBehaviour:
   damage: 5
   attackCooldown: 0.365
   attackPower: 25
-  attackDistance: 6
+  attackDistance: 5
   attackLayerMask:
     serializedVersion: 2
     m_Bits: 65
