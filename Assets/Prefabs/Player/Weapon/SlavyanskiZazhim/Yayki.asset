@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af47be683fc7b1d469cf62f868d6a3d2, type: 3}
-  m_Name: MolotRUS
+  m_Name: Yayki
   m_EditorClassIdentifier: 
-  weapon: {fileID: 4765187406158229453, guid: acae326514665fd4faee8d635a43a931, type: 3}
+  weapon: {fileID: 4765187406158229453, guid: 3cd20d59697cb6f489fb4038962d249a, type: 3}

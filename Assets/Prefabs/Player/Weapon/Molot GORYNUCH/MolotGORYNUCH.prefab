@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 15
   attackCooldown: 0.365
-  attackPower: 50
+  attackPower: 20
   attackDistance: 8
   attackLayerMask:
     serializedVersion: 2

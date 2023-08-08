@@ -9,10 +9,19 @@ public class DefaultWeaponMeleeAttack : PlayerWeaponAttack
 
         if (Physics.Raycast(attackRay, out RaycastHit hit, attackDistance, attackLayerMask))
         {
-            if (hit.collider.gameObject.TryGetComponent(out IHealth health))
+            var hitGameObject = hit.collider.gameObject; 
+            
+            if (hitGameObject.TryGetComponent(out IHealth health))
             {
                 health.TakeDamage(damage);
                 PlayerCombatService.PlayEffect(PlayerCombatService.EnemyAttackEffect,hit.point);
+
+                if (hitGameObject.TryGetComponent(out Rigidbody rb))
+                {
+                    var smooth = 100;
+                    
+                    rb.AddForce(attackPoint.forward * attackPower * smooth, ForceMode.Impulse);
+                }
                 
                 return;
             }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4765187406158229458}
   - component: {fileID: 4670122536124014636}
   m_Layer: 0
-  m_Name: Zhezl VITYAZ
+  m_Name: ZhezlVARYAG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4765187406158229453}
-  m_Mesh: {fileID: -2432090755550338912, guid: 2334cd5e76a8b244db8014947ab2b085, type: 3}
+  m_Mesh: {fileID: -2432090755550338912, guid: 03336c578e12b4b429d7f135e4880038, type: 3}
 --- !u!23 &4765187406158229458
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4c2ca0f925bf2294fb954c653d9c410c, type: 2}
+  - {fileID: 2100000, guid: 8f0313bf6d4ecec45aa1c6ae285b887f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,14 +97,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a6e6ec320e531408c4b485049024f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 12.5
   attackCooldown: 0.38
   attackPower: 0
   attackDistance: 0
   attackLayerMask:
     serializedVersion: 2
     m_Bits: 65
-  projectilePrefab: {fileID: 7757239720511344410, guid: 369294ff2331aa2468015076393be691,
+  projectilePrefab: {fileID: 7757239720511344410, guid: 3e32fa990d3d9794a9cdf3883c95e514,
     type: 3}
 --- !u!1 &5146516112471024883
 GameObject:
@@ -275,7 +275,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.14
+      scalar: -0.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -391,7 +391,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.035
+      scalar: 0.04
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -854,7 +854,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0.1
     radius:
-      value: 0.2
+      value: 0.3
       mode: 0
       spread: 0
       speed:
@@ -973,7 +973,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 25
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4876,7 +4876,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ac8b2033969666642b07004ddbf09830, type: 2}
+  - {fileID: 2100000, guid: e8589b7f257487146917b842134dadeb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

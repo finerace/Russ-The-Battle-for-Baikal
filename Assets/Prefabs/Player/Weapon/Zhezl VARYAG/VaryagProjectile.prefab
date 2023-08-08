@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7757239720511344406}
   - component: {fileID: 1193047535276573977}
   m_Layer: 9
-  m_Name: VityazProjectile
+  m_Name: VaryagProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,9 +71,9 @@ MonoBehaviour:
   target: {fileID: 0}
   damage: 10
   hitForce: 5
-  speed: 50
+  speed: 60
   toTargetRotationSpeed: 0
-  lifeTime: 5
+  lifeTime: 15
 --- !u!114 &7757239720511344401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,7 +292,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 8
+      scalar: 12
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -408,7 +408,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4893,7 +4893,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ac8b2033969666642b07004ddbf09830, type: 2}
+  - {fileID: 2100000, guid: e8589b7f257487146917b842134dadeb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4971,7 +4971,7 @@ Transform:
   m_GameObject: {fileID: 7757239720881570461}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2668432, y: 0.9337774, z: 1.678946}
+  m_LocalScale: {x: 1.2668432, y: 1.58, z: 1.678946}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7757239720511344405}
@@ -5005,7 +5005,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bd328e4563dfd4445ba19a09715388b5, type: 2}
+  - {fileID: 2100000, guid: 67314ba17c0dfbe44be2bd532550e75b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5196,7 +5196,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 23
+      scalar: 25
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5312,7 +5312,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 2.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -9797,7 +9797,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ac8b2033969666642b07004ddbf09830, type: 2}
+  - {fileID: 2100000, guid: e8589b7f257487146917b842134dadeb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

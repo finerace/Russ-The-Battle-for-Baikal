@@ -143,14 +143,14 @@ public class EnemyMainBase : HealthBase
     
     private void Update()
     {
+        FallAlgorithm();
+        
         if(isDied)
             return;
 
         MovementAlgorithm();
         void MovementAlgorithm()
         {
-            FallAlgorithm();
-
             if(targetT == null || !isAnnoyed)
                 return;
 
@@ -217,6 +217,8 @@ public class EnemyMainBase : HealthBase
         if(isDied)
             return;
         
+        isFly = true;
+
         enemyRb.useGravity = true;
         enemyRb.drag = onDiedDrag;
         gameObject.layer = 7;
