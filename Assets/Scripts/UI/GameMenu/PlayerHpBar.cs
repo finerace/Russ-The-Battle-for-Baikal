@@ -26,6 +26,11 @@ public class PlayerHpBar : MonoBehaviour
         UpdateHpLabel();        
     }
 
+    private void OnEnable()
+    {
+        UpdateHpLabel();
+    }
+
     private void Update()
     {
         var timeStep = Time.deltaTime * hpBarSpeed;

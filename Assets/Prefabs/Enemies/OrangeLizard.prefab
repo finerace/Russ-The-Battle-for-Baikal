@@ -296,6 +296,10 @@ MonoBehaviour:
   isAnnoyed: 0
   targetT: {fileID: 0}
   onDiedDrag: 4
+  minMoneyDrop: 2
+  maxMoneyDrop: 5
+  moneyPrefab: {fileID: 6018791592522071948, guid: 5a08c8b99d0c77d4fa5a6ef92d37111c,
+    type: 3}
 --- !u!114 &2766471211399562878
 MonoBehaviour:
   m_ObjectHideFlags: 0

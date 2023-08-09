@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyMainBase : HealthBase
 {
@@ -49,6 +50,12 @@ public class EnemyMainBase : HealthBase
     
     [SerializeField] private float onDiedDrag = 4;
 
+    [Space] 
+    
+    [SerializeField] private int minMoneyDrop;
+    [SerializeField] private int maxMoneyDrop;
+    [SerializeField] private GameObject moneyPrefab;
+    
     protected bool isTargetVisible;
     public bool IsTargetVisible => isTargetVisible;
 
@@ -224,5 +231,28 @@ public class EnemyMainBase : HealthBase
         gameObject.layer = 7;
         
         isDied = true;
+
+        MoneyDrop();
+        void MoneyDrop()
+        {
+            var dropPoint = enemyT;
+            var moneyDropCount = Random.Range(minMoneyDrop,maxMoneyDrop+1);
+
+            for (int i = 0; i < moneyDropCount; i++)
+            {
+                var isGetRb = 
+                    Instantiate(moneyPrefab,dropPoint.position,Quaternion.identity).TryGetComponent(out Rigidbody rb);
+
+                if (isGetRb)
+                {
+                    var smooth = 100;
+                    var randomUpDirection = 
+                        Vector3.up+new Vector3(Random.Range(-0.25f,0.25f),0,Random.Range(-0.25f,0.25f)) * smooth;
+                    
+                    rb.AddForce(randomUpDirection,ForceMode.Impulse);
+                }
+            }
+            
+        }
     }
 }

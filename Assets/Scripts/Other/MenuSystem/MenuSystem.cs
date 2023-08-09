@@ -100,9 +100,9 @@ public class MenuSystem : MonoBehaviour
     {
         if (!currentMenuIsParent)
         {
-            print($"Open menu has failed! \n" + $"Current menu {menuID} is not parent!");
+            //print($"Open menu has failed! \n" + $"Current menu {menuID} is not parent!");
             
-            return;
+            Back();
         }
 
         var currentParentMenu = (ParentMenuData)currentMenuData;

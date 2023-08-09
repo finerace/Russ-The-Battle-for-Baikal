@@ -107,19 +107,14 @@ public class WeaponShop : MonoBehaviour
         if (focusedShopItem.IsSell)
         {
             selectedShopItem = focusedShopItem;
-            SetLabels();   
-            
-            return;
         }
-
-        if (playerMoneyService.TryTakeMoney(focusedShopItem.Cost))
+        else if (playerMoneyService.TryTakeMoney(focusedShopItem.Cost))
         {
             focusedShopItem.Buy();
             selectedShopItem = focusedShopItem;
-            
-            SetLabels();
         }
         
         playerCombatService.SetSelectedWeapon(selectedShopItem.Weapon);
+        SetLabels(); 
     }
 }
