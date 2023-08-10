@@ -17,7 +17,10 @@ public sealed class PlayerMain :  HealthBase
         menuSystem = FindObjectOfType<MenuSystem>();
         playerMoneyService = FindObjectOfType<PlayerMoneyService>();
 
-        FindObjectOfType<GameEvents>().OnRoundStart += OnStartRound;
+        var gameEvents = FindObjectOfType<GameEvents>();
+        
+        gameEvents.OnRoundStart += OnStartRound;
+        gameEvents.OnRoundEnd += OnRoundEnd;
     }
 
     public void SetManageActive(bool state)
@@ -46,6 +49,14 @@ public sealed class PlayerMain :  HealthBase
     {
         isDied = false;
         health = maxHealth;
+    }
+
+    private void OnRoundEnd()
+    {
+        var playerT = transform;
+        
+        playerT.position = Vector3.zero + Vector3.up;
+        playerT.rotation = Quaternion.identity;
     }
 
     public override void Died()

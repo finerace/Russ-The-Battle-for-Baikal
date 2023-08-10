@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class DieMenuService : MonoBehaviour
+public class RoundStatsDisplayService : MonoBehaviour
 {
     private RoundStats roundStats;
     [SerializeField] private TMP_Text earnedCoinsOnRound;
@@ -12,14 +12,16 @@ public class DieMenuService : MonoBehaviour
     {
         if (roundStats == null)
             roundStats = FindObjectOfType<RoundStats>();
-
-        reviveAd.SetActive(!roundStats.IsReviveUsed);
+        
+        if(reviveAd != null)
+            reviveAd.SetActive(!roundStats.IsReviveUsed);
 
         SetLabels();
     }
 
     private void SetLabels()
     {
-        earnedCoinsOnRound.text = roundStats.EarnedCoinsOnRound.ToString();
+        if(earnedCoinsOnRound != null)
+            earnedCoinsOnRound.text = roundStats.EarnedCoinsOnRound.ToString();
     }
 }
