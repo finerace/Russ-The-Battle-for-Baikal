@@ -746,11 +746,11 @@ MonoBehaviour:
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  dotFov: 0.75
+  dotFov: 0.55
   isAnnoyed: 0
   targetT: {fileID: 0}
   onDiedDrag: 4
-  minMoneyDrop: 0
+  minMoneyDrop: 1
   maxMoneyDrop: 2
   moneyPrefab: {fileID: 6018791592522071948, guid: 5a08c8b99d0c77d4fa5a6ef92d37111c,
     type: 3}

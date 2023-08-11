@@ -115,7 +115,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 27.5, y: 26.664927, z: 48.6}
+  m_Size: {x: 34, y: 26.664927, z: 54}
   m_Center: {x: 0, y: 13.318402, z: 0}
 --- !u!114 &-9021718928599756564
 MonoBehaviour:
@@ -138,6 +138,14 @@ MonoBehaviour:
   destroyDoorIndex: 0
   enemyPrefab: {fileID: 5980243491559514433, guid: 92a0a6d4a1a5e0b42bbc340e3f01d439,
     type: 3}
+  isTriggeredRoom: 0
+  dungeonsPrefabs:
+  - {fileID: 5969272560563591895, guid: b0001873bafdd064985deb63a82410c9, type: 3}
+  - {fileID: 3244327181766613155, guid: 509d86f586704f048bb3248eb2539476, type: 3}
+  - {fileID: 5133034481539138908, guid: 27894f2389412da4e926193d62b64310, type: 3}
+  - {fileID: 1042094742497456393, guid: c2e98b8c13190c649a30c55410c1b470, type: 3}
+  enemiesPrefabs:
+  - {fileID: 5980243491559514433, guid: 92a0a6d4a1a5e0b42bbc340e3f01d439, type: 3}
 --- !u!1001 &3907722675088820259
 PrefabInstance:
   m_ObjectHideFlags: 0

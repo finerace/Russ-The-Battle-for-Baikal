@@ -23,11 +23,13 @@ public class WeaponGroundAttack : PlayerWeaponAttack
         foreach (var collider in attackedColliders)
         {
             if (collider.TryGetComponent(out IHealth health))
+            {
                 health.TakeDamage(damage);
-
-            var smooth = 100;
-            if (collider.TryGetComponent(out Rigidbody rb))
-                rb.AddForce(Vector3.up * attackPower * smooth,ForceMode.Impulse);
+                
+                var smooth = 100;
+                if (collider.TryGetComponent(out Rigidbody rb))
+                    rb.AddForce(Vector3.up * attackPower * smooth,ForceMode.Impulse);
+            }
         }
         
     }

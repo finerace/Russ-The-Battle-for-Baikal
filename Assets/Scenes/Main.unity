@@ -305,7 +305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &141564899
 RectTransform:
   m_ObjectHideFlags: 0
@@ -758,7 +758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a13dd63f9e2b2d4f898f8d5d8a9940f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMoney: 25
+  playerMoney: 555
 --- !u!1 &240323487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,7 +1343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &292439140
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1572,7 +1572,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 150
   field of view: 80
   orthographic: 0
   orthographic size: 5
@@ -3382,7 +3382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerT: {fileID: 637910183}
   playerRb: {fileID: 637910185}
-  playerSpeed: 5
+  playerSpeed: 4.25
   playerJumpForce: 5
   fallSpeed: 1
   fallVelocitySpeed: 7
@@ -3391,7 +3391,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 65
   isPlayerOnGround: 0
-  groundCheckDistance: 0.15
+  groundCheckDistance: 0.3
   groundIgnoreTime: 0.25
   isManageActive: 1
 --- !u!114 &637910187
@@ -19161,7 +19161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.134, b: 0.134, a: 0.36078432}
+  m_Color: {r: 1, g: 0.134, b: 0.134, a: 0.19607843}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

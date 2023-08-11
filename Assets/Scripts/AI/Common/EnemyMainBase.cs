@@ -245,9 +245,11 @@ public class EnemyMainBase : HealthBase
 
                 if (isGetRb)
                 {
-                    var smooth = 100;
+                    var smooth = 25;
                     var randomUpDirection = 
-                        Vector3.up+new Vector3(Random.Range(-0.25f,0.25f),0,Random.Range(-0.25f,0.25f)) * smooth;
+                        Vector3.up+new Vector3(Random.Range(-0.5f,0.5f),0,Random.Range(-0.5f,0.5f));
+
+                    randomUpDirection *= smooth;
                     
                     rb.AddForce(randomUpDirection,ForceMode.Impulse);
                 }

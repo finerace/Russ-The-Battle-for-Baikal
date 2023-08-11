@@ -8,7 +8,6 @@ public sealed class PlayerMain :  HealthBase
     [SerializeField] private PlayerMovementService playerMovementService;
     [SerializeField] private PlayerCombatService playerCombatService;
     [SerializeField] private PlayerRotationService playerRotationService;
-    private bool isDied;
 
     public Action OnReviveUse;
     
@@ -38,7 +37,7 @@ public sealed class PlayerMain :  HealthBase
     public void Revive()
     {
         health = maxHealth;
-        isDied = false;
+        isDie = false;
         
         menuSystem.OpenLocalMenu("GameMenu");
         
@@ -47,7 +46,7 @@ public sealed class PlayerMain :  HealthBase
 
     private void OnStartRound()
     {
-        isDied = false;
+        isDie = false;
         health = maxHealth;
     }
 
@@ -61,11 +60,6 @@ public sealed class PlayerMain :  HealthBase
 
     public override void Died()
     {
-        if(isDied)
-            return;
-        
-        isDied = true;
-
         SetManageActive(false);
         menuSystem.OpenLocalMenu("DieMenu");
     }

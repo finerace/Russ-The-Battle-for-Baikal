@@ -715,7 +715,7 @@ MonoBehaviour:
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  dotFov: 0.7
+  dotFov: 0.55
   isAnnoyed: 0
   targetT: {fileID: 0}
   onDiedDrag: 4

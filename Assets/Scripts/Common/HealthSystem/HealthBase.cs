@@ -12,6 +12,8 @@ public abstract class HealthBase : MonoBehaviour,IHealth
     public event Action OnDie;
     public event Action<float> OnTakeDamage;
 
+    protected bool isDie;
+
     public void TakeDamage(float damageValue)
     {
         health -= damageValue;
@@ -20,6 +22,11 @@ public abstract class HealthBase : MonoBehaviour,IHealth
         
         if (!(health <= 0)) 
             return;
+
+        if(isDie)
+            return;
+        
+        isDie = true;
         
         Died();
         OnDie?.Invoke();
