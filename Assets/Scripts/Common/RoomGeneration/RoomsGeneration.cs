@@ -102,4 +102,9 @@ public class RoomsGeneration : MonoBehaviour
             currentRoom.DestroyRoom();
     }
     
+    public void SetNewRoom(GameObject room)
+    {
+        roomPrefab = room;
+    }
+    
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,19 +18,23 @@ public class GeneratedRoom : MonoBehaviour
     [SerializeField] private int destroyDoorIndex;
     public int DestroyDoorIndex => destroyDoorIndex;
 
-    [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private bool isTriggeredRoom = false;
 
     [SerializeField] private GameObject[] dungeonsPrefabs;
+    [SerializeField] private GameObject[] bigDungeonsPrefabs;
     [SerializeField] private GameObject[] enemiesPrefabs;
-    private List<Transform> enemiesPoss = new List<Transform>();
+    private List<Transform> enemyPoss = new List<Transform>();
     private int diedEnemies;
     
     public Action onPlayerEnter;
     public Action onAllEnemyDie;
 
+    private BoxCollider playerTrigger;
+    
     private void Awake()
     {
+        playerTrigger = GetComponent<BoxCollider>();
+        
         if(!isTriggeredRoom)
             SpawnDungeons();
     }
@@ -44,7 +49,8 @@ public class GeneratedRoom : MonoBehaviour
     {
         if(other.gameObject.layer != LayerMask.NameToLayer("Player") || isTriggeredRoom)
             return;
-        
+
+        playerTrigger.enabled = false;
         isTriggeredRoom = true;
         
         onPlayerEnter?.Invoke();
@@ -56,41 +62,75 @@ public class GeneratedRoom : MonoBehaviour
 
     private void SpawnDungeons()
     {
-        var scale1 = new Vector3(1, 1, 1);
-        var scale2 = new Vector3(-1, 1, 1);
-        var scale3 = new Vector3(1, 1, -1);
-        var scale4 = new Vector3(-1, 1, -1);
-
-        DungeonData SpawnRandomDungeon()
-        {
-            var randomRoom = dungeonsPrefabs[Random.Range(0, dungeonsPrefabs.Length)];
-            return Instantiate(randomRoom,roomCenterPoint).GetComponent<DungeonData>();
-        }
-
-        var data1 = SpawnRandomDungeon();
-        var data2 = SpawnRandomDungeon();
-        var data3 = SpawnRandomDungeon();
-        var data4 = SpawnRandomDungeon();
+        var random = 2;
         
-        data1.transform.localScale = scale1;
-        data2.transform.localScale = scale2;
-        data3.transform.localScale = scale3;
-        data4.transform.localScale = scale4;
-
-        AddEnemyPoss();
-        void AddEnemyPoss()
+        if(random == 1)
+            SpawnBigDungeon();
+        else
+            SpawnSmallDungeons();
+        
+        void SpawnBigDungeon()
         {
-            foreach (var pos in data1.EnemiesPoss)
-                enemiesPoss.Add(pos);
+            enemyPoss = 
+                Instantiate(bigDungeonsPrefabs[Random.Range(0, bigDungeonsPrefabs.Length)], roomCenterPoint)
+                    .GetComponent<DungeonData>().EnemiesPoss.ToList();
+        }
+        
+        void SpawnSmallDungeons()
+        {
+            var scale1 = new Vector3(1, 1, 1);
+            var scale2 = new Vector3(-1, 1, 1);
+            var scale3 = new Vector3(1, 1, -1);
+            var scale4 = new Vector3(-1, 1, -1);
 
-            foreach (var pos in data2.EnemiesPoss)
-                enemiesPoss.Add(pos);
+            DungeonData SpawnRandomDungeon()
+            {
+                var randomRoom = dungeonsPrefabs[Random.Range(0, dungeonsPrefabs.Length)];
+                return Instantiate(randomRoom, roomCenterPoint).GetComponent<DungeonData>();
+            }
 
-            foreach (var pos in data3.EnemiesPoss)
-                enemiesPoss.Add(pos);
+            var data1 = SpawnRandomDungeon();
+            var data2 = SpawnRandomDungeon();
+            var data3 = SpawnRandomDungeon();
+            var data4 = SpawnRandomDungeon();
 
-            foreach (var pos in data4.EnemiesPoss)
-                enemiesPoss.Add(pos);
+            data1.transform.localScale = scale1;
+            data2.transform.localScale = scale2;
+            data3.transform.localScale = scale3;
+            data4.transform.localScale = scale4;
+
+            FixDungeonEnemyPos(data1);
+            FixDungeonEnemyPos(data2);
+            FixDungeonEnemyPos(data3);
+            FixDungeonEnemyPos(data4);
+
+            AddEnemyPoss();
+
+            void AddEnemyPoss()
+            {
+                foreach (var pos in data1.EnemiesPoss)
+                    enemyPoss.Add(pos);
+
+                foreach (var pos in data2.EnemiesPoss)
+                    enemyPoss.Add(pos);
+
+                foreach (var pos in data3.EnemiesPoss)
+                    enemyPoss.Add(pos);
+
+                foreach (var pos in data4.EnemiesPoss)
+                    enemyPoss.Add(pos);
+            }
+
+            void FixDungeonEnemyPos(DungeonData data)
+            {
+                foreach (var pos in data.EnemiesPoss)
+                {
+                    if (data.transform.localScale.z > 0)
+                        return;
+
+                    pos.eulerAngles = new Vector3(pos.eulerAngles.x, pos.eulerAngles.y - 180, pos.eulerAngles.z);
+                }
+            }
         }
     }
 
@@ -101,7 +141,7 @@ public class GeneratedRoom : MonoBehaviour
             return enemiesPrefabs[Random.Range(0,enemiesPrefabs.Length)];
         }
         
-        foreach (var pos in enemiesPoss)
+        foreach (var pos in enemyPoss)
         {
             var enemyBase = 
                 Instantiate(GetRandomEnemy(),pos.position,pos.rotation).GetComponent<EnemyMainBase>();
@@ -115,7 +155,7 @@ public class GeneratedRoom : MonoBehaviour
     {
         diedEnemies++;
         
-        if(diedEnemies >= enemiesPoss.Count)
+        if(diedEnemies >= enemyPoss.Count)
             OnAllEnemyDie();
         
     }
