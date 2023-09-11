@@ -23,7 +23,7 @@ public class RoundStats : MonoBehaviour
             earnedCoinsOnRound++;
         }
 
-        var playerMain = FindObjectOfType<PlayerMain>();
+        var playerMain = FindObjectOfType<PlayerMainService>();
         playerMain.OnReviveUse += () => { isReviveUsed = true;};
 
     }

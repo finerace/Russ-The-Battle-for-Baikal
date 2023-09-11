@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerHpBar : MonoBehaviour
 {
-    [SerializeField] private PlayerMain playerHealth;
+    [SerializeField] private PlayerMainService playerHealth;
     [SerializeField] private TMP_Text playerHpLabel;
     [SerializeField] private Image playerHpBar;
     [SerializeField] private TextAlphaSpawner textSpawner;
@@ -16,7 +16,7 @@ public class PlayerHpBar : MonoBehaviour
 
     private void Awake()
     {
-        playerHealth = FindObjectOfType<PlayerMain>();
+        playerHealth = FindObjectOfType<PlayerMainService>();
     }
 
     private void Start()

@@ -62,7 +62,7 @@ public class GeneratedRoom : MonoBehaviour
 
     private void SpawnDungeons()
     {
-        var random = 2;
+        var random = Random.Range(0,25);
         
         if(random == 1)
             SpawnBigDungeon();

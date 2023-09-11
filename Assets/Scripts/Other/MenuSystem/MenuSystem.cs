@@ -22,14 +22,14 @@ public class MenuSystem : MonoBehaviour
     
     private Camera mainCamera;
 
-    private PlayerMain playerMain;
+    private PlayerMainService _playerMainService;
     
     public MenuData CurrentMenuData => currentMenuData;
     
     private void Awake()
     {
         mainCamera = Camera.main;
-        playerMain = FindObjectOfType<PlayerMain>();
+        _playerMainService = FindObjectOfType<PlayerMainService>();
         
         InitMenusData();
     }
@@ -228,7 +228,7 @@ public class MenuSystem : MonoBehaviour
         
         void SetPlayerManageActive(bool state)
         {
-            playerMain.SetManageActive(state);
+            _playerMainService.SetManageActive(state);
         }
     }
 

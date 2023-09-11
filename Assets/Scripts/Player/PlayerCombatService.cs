@@ -12,9 +12,10 @@ public sealed class PlayerCombatService : MonoBehaviour
     [Space] 
     
     [SerializeField] private Transform weaponSpawnPoint;
-    [SerializeField] private WeaponData weaponPrefab;
+    [SerializeField] private WeaponData weaponData;
     private GameObject weapon;
-    
+    public WeaponData WeaponData => weaponData;
+
     private IPlayerAttack playerAttack;
     
     [Space]
@@ -62,7 +63,7 @@ public sealed class PlayerCombatService : MonoBehaviour
 
     public void OnRoundStart()
     {
-        weapon = Instantiate(weaponPrefab.Weapon, weaponSpawnPoint);
+        weapon = Instantiate(weaponData.Weapon, weaponSpawnPoint);
         playerAttack = weapon.GetComponent<IPlayerAttack>();
         playerAttack.PlayerCombatService = this;
         
@@ -93,6 +94,6 @@ public sealed class PlayerCombatService : MonoBehaviour
 
     public void SetSelectedWeapon(WeaponData weaponData)
     {
-        weaponPrefab = weaponData;
+        this.weaponData = weaponData;
     }
 }

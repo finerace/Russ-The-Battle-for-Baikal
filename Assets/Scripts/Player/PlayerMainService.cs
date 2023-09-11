@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public sealed class PlayerMain :  HealthBase
+public sealed class PlayerMainService :  HealthBase
 {
     private MenuSystem menuSystem;
     private PlayerMoneyService playerMoneyService;
