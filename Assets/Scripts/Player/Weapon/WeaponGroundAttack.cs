@@ -5,12 +5,12 @@ public class WeaponGroundAttack : PlayerWeaponAttack
     [SerializeField] private float attackRadius;
     [SerializeField] private ParticleSystem attackEffect;
     
-    public override void Attack()
+    public override bool Attack()
     {
         var downRay = new Ray(PlayerCombatService.CombatPointT.position, Vector3.down);
 
         if (!Physics.Raycast(downRay, out RaycastHit hit, 1000, attackLayerMask)) 
-            return;
+            return true;
         
         var attackedColliders = Physics.OverlapSphere(hit.point, attackRadius, attackLayerMask);
 
@@ -32,5 +32,6 @@ public class WeaponGroundAttack : PlayerWeaponAttack
             }
         }
         
+        return true;
     }
 }

@@ -13,4 +13,5 @@ public class WeaponData : ScriptableObject
     public GameObject Weapon => weapon;
 
     public AudioClip WeaponAttackSound => weaponAttackSound;
+    public AudioClip WeaponHitSound => weaponHitSound;
 }

@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: MolotoboetsKievski
   m_EditorClassIdentifier: 
   weapon: {fileID: 4765187406158229453, guid: 810d212df6e1d2844b112fe30f56268a, type: 3}
+  weaponAttackSound: {fileID: 8300000, guid: d3ffaa7db121dc847b3b471e669a45d8, type: 3}
+  weaponHitSound: {fileID: 8300000, guid: d3ffaa7db121dc847b3b471e669a45d8, type: 3}

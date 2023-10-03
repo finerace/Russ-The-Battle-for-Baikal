@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DefaultWeaponMeleeAttack : PlayerWeaponAttack
 {
-    public override void Attack()
+    public override bool Attack()
     {
         var attackPoint = PlayerCombatService.CombatPointT;
         var attackRay = new Ray(attackPoint.position,attackPoint.forward);
@@ -23,11 +23,14 @@ public class DefaultWeaponMeleeAttack : PlayerWeaponAttack
                     rb.AddForce(attackPoint.forward * attackPower * smooth, ForceMode.Impulse);
                 }
                 
-                return;
+                return true;
             }
             
             PlayerCombatService.PlayEffect(PlayerCombatService.WallAttackEffect,hit.point);
+            
+            return true;
         }
-        
+
+        return false;
     }
 }

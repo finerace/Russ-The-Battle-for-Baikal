@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Yayki
   m_EditorClassIdentifier: 
   weapon: {fileID: 4765187406158229453, guid: 3cd20d59697cb6f489fb4038962d249a, type: 3}
+  weaponAttackSound: {fileID: 8300000, guid: d3ffaa7db121dc847b3b471e669a45d8, type: 3}
+  weaponHitSound: {fileID: 8300000, guid: d3ffaa7db121dc847b3b471e669a45d8, type: 3}

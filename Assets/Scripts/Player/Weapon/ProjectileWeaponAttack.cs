@@ -4,7 +4,7 @@ public class ProjectileWeaponAttack : PlayerWeaponAttack
 {
     [SerializeField] private GameObject projectilePrefab;
     
-    public override void Attack()
+    public override bool Attack()
     {
         var startPoint = PlayerCombatService.CombatPointProjectilesT;
 
@@ -12,5 +12,7 @@ public class ProjectileWeaponAttack : PlayerWeaponAttack
             Instantiate(projectilePrefab, startPoint.position, startPoint.rotation).GetComponent<Projectile>();
         
         projectile.SetDamage(damage);
+        
+        return true;
     }
 }

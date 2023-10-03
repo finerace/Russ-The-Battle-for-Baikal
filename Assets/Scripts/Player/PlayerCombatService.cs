@@ -39,7 +39,8 @@ public sealed class PlayerCombatService : MonoBehaviour
     
     public bool IsAttack => isAttack;
     public event Action onAttack;
-
+    public event Action onHit;
+    
     private void Start()
     {
         var gameEvens = FindObjectOfType<GameEvents>();
@@ -55,7 +56,12 @@ public sealed class PlayerCombatService : MonoBehaviour
         {
             cooldownTimer = 0;
             
-            playerAttack.Attack();
+            var isHit = playerAttack.Attack();
+            
+            onAttack?.Invoke();
+            
+            if(isHit)
+                onHit?.Invoke();
         }
 
         cooldownTimer += Time.deltaTime;

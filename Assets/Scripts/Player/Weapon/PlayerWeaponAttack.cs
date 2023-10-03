@@ -15,12 +15,12 @@ public abstract class PlayerWeaponAttack : MonoBehaviour, IPlayerAttack
 
     public float AttackCooldown { get => attackCooldown; }
 
-    public abstract void Attack();
+    public abstract bool Attack();
 }
 
 public interface IPlayerAttack
 {
     public PlayerCombatService PlayerCombatService { get; set; }
     public float AttackCooldown { get;}
-    public void Attack();
+    public bool Attack();
 }

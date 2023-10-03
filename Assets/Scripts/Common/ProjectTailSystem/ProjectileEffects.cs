@@ -11,6 +11,10 @@ public class ProjectileEffects : MonoBehaviour
     [SerializeField] protected ParticleSystem hitEffect;
     [SerializeField] protected MeshRenderer projectTailMesh;
 
+    [Space] 
+    
+    [SerializeField] private AudioCastData onHitSound;
+    
     protected void Start()
     {
         projectileMain.OnHit += OnHit;
@@ -21,6 +25,9 @@ public class ProjectileEffects : MonoBehaviour
         flyEffect.Stop();
         hitEffect.Play();
 
+        onHitSound.castPos = projectileMain.transform.position;
+        AudioPoolService.audioPoolServiceInstance.CastAudio(onHitSound);
+        
         projectTailMesh.enabled = false;
     }
     

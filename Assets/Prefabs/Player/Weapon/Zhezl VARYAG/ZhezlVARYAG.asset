@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: ZhezlVARYAG
   m_EditorClassIdentifier: 
   weapon: {fileID: 4765187406158229453, guid: d571892debe1abb429b274cf470a608e, type: 3}
+  weaponAttackSound: {fileID: 8300000, guid: 71691ee3be6d2ab4dab7b8d49ab8a142, type: 3}
+  weaponHitSound: {fileID: 8300000, guid: 71691ee3be6d2ab4dab7b8d49ab8a142, type: 3}

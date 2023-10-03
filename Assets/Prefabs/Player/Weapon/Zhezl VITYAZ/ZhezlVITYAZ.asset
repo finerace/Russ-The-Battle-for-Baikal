@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: ZhezlVITYAZ
   m_EditorClassIdentifier: 
   weapon: {fileID: 4765187406158229453, guid: a08b536961bb79d42bde899aaa052bd5, type: 3}
+  weaponAttackSound: {fileID: 8300000, guid: 71691ee3be6d2ab4dab7b8d49ab8a142, type: 3}
+  weaponHitSound: {fileID: 8300000, guid: 71691ee3be6d2ab4dab7b8d49ab8a142, type: 3}
