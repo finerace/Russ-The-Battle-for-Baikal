@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class RoomsGeneration : MonoBehaviour
@@ -19,6 +20,8 @@ public class RoomsGeneration : MonoBehaviour
     [Space] 
     
     [SerializeField] private GameObject roomPrefab;
+
+    public event Action OnNewRoomSpawn;
     
     private void Awake()
     {
@@ -63,6 +66,8 @@ public class RoomsGeneration : MonoBehaviour
 
         currentRoom.onPlayerEnter += DestroyPreviousRoom;
         currentRoom.onAllEnemyDie += SpawnNewRoom;
+        
+        OnNewRoomSpawn?.Invoke();
     }
 
     private void DestroyPreviousRoom()

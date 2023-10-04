@@ -13,7 +13,7 @@ public class LizardMouthMoving : MonoBehaviour
 
     [SerializeField] private float power;
     
-    private float[] spectrumData = new float[128];
+    private float[] spectrumData = new float[64];
     
     private void Update()
     {
@@ -24,8 +24,7 @@ public class LizardMouthMoving : MonoBehaviour
 
         audioSource.GetSpectrumData(spectrumData,0,FFTWindow.Rectangular);
 
-        var playCof = audioSource.time / audioSource.clip.length;
-        var currentVolume = Mathf.Log(spectrumData[(int)(spectrumData.Length * playCof)]);
+        var currentVolume = Mathf.Log(spectrumData[1]);
         
         mouthRotation.x = xDefault + currentVolume * power;
         
