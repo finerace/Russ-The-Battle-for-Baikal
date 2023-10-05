@@ -1,39 +1,58 @@
 mergeInto(LibraryManager.library, {
 
 	ShowAdv : function () {
+		MyGameInstance.SendMessage("Yandex", "AudioOff");
+		MyGameInstance.SendMessage("Yandex", "MenuBack");		
+
 		ysdk.adv.showFullscreenAdv({
     			callbacks: {
        			 onClose: function(wasShown) {
-          			// some action after close
+          			MyGameInstance.SendMessage("Yandex", "AudioOn");
         				},
         			onError: function(error) {
-          			// some action on error
+          			MyGameInstance.SendMessage("Yandex", "AudioOn");
         				}
     			}
 		})
 	},
 
 ShowAdvRevive : function () {
+
+MyGameInstance.SendMessage("Yandex", "AudioOff");
+
+var reward = false;
+
 		ysdk.adv.showRewardedVideo({
     callbacks: {
         onOpen: () => {
           console.log('Video ad open.');
+	MyGameInstance.SendMessage("Yandex", "AudioOff");
         },
         onRewarded: () => {
           console.log('Rewarded!');
-	myGameInstance.SendMessage("Yandex", "RevivePlayer");
+	reward = true;
         },
         onClose: () => {
           console.log('Video ad closed.');
+	MyGameInstance.SendMessage("Yandex", "AudioOn");
+	
+	if(reward == true) {
+	MyGameInstance.SendMessage("Yandex", "RevivePlayer");
+	}
+
         }, 
         onError: (e) => {
           console.log('Error while open video ad:', e);
+	MyGameInstance.SendMessage("Yandex", "AudioOn");
         }
     }
 })
 	},
 
 ShowAdvDouble : function () {
+
+MyGameInstance.SendMessage("Yandex", "AudioOff");
+
 		ysdk.adv.showRewardedVideo({
     callbacks: {
         onOpen: () => {
@@ -41,13 +60,15 @@ ShowAdvDouble : function () {
         },
         onRewarded: () => {
           console.log('Rewarded!');
-	myGameInstance.SendMessage("Yandex", "DoubleCoins");
+	MyGameInstance.SendMessage("Yandex", "DoubleCoins");
         },
         onClose: () => {
           console.log('Video ad closed.');
+	MyGameInstance.SendMessage("Yandex", "AudioOn");
         }, 
         onError: (e) => {
           console.log('Error while open video ad:', e);
+	MyGameInstance.SendMessage("Yandex", "AudioOn");
         }
     }
 })

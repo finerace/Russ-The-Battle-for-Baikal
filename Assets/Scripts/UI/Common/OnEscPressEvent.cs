@@ -7,7 +7,7 @@ public class OnEscPressEvent : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             onEscPressEvent.Invoke();
         }

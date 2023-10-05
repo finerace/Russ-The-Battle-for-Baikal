@@ -5839,7 +5839,7 @@ MonoBehaviour:
   lizardMouthBone: {fileID: 2496571237139707527}
   audioSource: {fileID: -885347713890332751}
   xDefault: -69
-  power: -4
+  power: -1.5
 --- !u!1 &8141521850142967179
 GameObject:
   m_ObjectHideFlags: 0

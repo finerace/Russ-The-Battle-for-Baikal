@@ -13,6 +13,9 @@ public class Yandex : MonoBehaviour
     
     [DllImport("__Internal")]
     public static extern void ShowAdvDouble();
+
+    private AudioListener mainAudioListener;
+    private MenuSystem menuSystem;
     
     public void RevivePlayer()
     {
@@ -31,6 +34,8 @@ public class Yandex : MonoBehaviour
     private void Start()
     {
         FindObjectOfType<RoomsGeneration>().OnNewRoomSpawn += OnNewRoomSpawnAdv;
+        mainAudioListener = FindObjectOfType<AudioListener>();
+        menuSystem = FindObjectOfType<MenuSystem>();
     }
 
     private void OnNewRoomSpawnAdv()
@@ -43,4 +48,22 @@ public class Yandex : MonoBehaviour
         roomSpawned = 0;
         ShowAdv();
     }
+
+    public void AudioOn()
+    {
+        print("audio ON");
+        mainAudioListener.enabled = true;
+    }
+
+    public void AudioOff()
+    {
+        print("audio OFF");
+        mainAudioListener.enabled = false;
+    }
+
+    public void MenuBack()
+    {
+        menuSystem.Back();
+    }
+    
 }
