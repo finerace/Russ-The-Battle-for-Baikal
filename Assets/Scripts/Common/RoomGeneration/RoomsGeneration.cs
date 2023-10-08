@@ -86,6 +86,9 @@ public class RoomsGeneration : MonoBehaviour
 
     private void OnRoundStart()
     {
+        if(previousRoom != null)
+            return;
+        
         currentRoom = firstRoom;
         
         SpawnNewRoom();
@@ -99,6 +102,8 @@ public class RoomsGeneration : MonoBehaviour
         
         if(previousRoom != null && previousRoom != firstRoom)
             previousRoom.DestroyRoom();
+
+        previousRoom = null;
         
         if(currentRoom == null)
             return;

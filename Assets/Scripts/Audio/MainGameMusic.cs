@@ -20,10 +20,15 @@ public class MainGameMusic : MonoBehaviour
         musicSource.clip = musicTracks[currentTrackNum];
         musicSource.Play();
         
+        var wait = new WaitForSeconds(1);
+        
         while (true)
         {
-            yield return new WaitForSeconds(musicSource.clip.length);
-        
+            yield return wait;
+
+            if (musicSource.isPlaying)
+                continue;
+            
             currentTrackNum++;
             if (currentTrackNum >= musicTracks.Length)
                 currentTrackNum = 0;

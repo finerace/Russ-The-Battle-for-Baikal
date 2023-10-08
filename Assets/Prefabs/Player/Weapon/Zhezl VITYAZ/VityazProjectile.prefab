@@ -91,7 +91,7 @@ MonoBehaviour:
   hitEffect: {fileID: 7757239721032288860}
   projectTailMesh: {fileID: 7757239720881570463}
   onHitSound:
-    audioMixerGroup: {fileID: 0}
+    audioMixerGroup: {fileID: 24300002, guid: d732743888d560f4fba97835c7d80b64, type: 2}
     clips:
     - {fileID: 8300000, guid: ca55ac72f25c1a84da98b672b73f1aa6, type: 3}
     castPos: {x: 0, y: 0, z: 0}

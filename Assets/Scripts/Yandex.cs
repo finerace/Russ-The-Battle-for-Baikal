@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Yandex : MonoBehaviour
 {
@@ -14,8 +16,9 @@ public class Yandex : MonoBehaviour
     [DllImport("__Internal")]
     public static extern void ShowAdvDouble();
 
-    private AudioListener mainAudioListener;
     private MenuSystem menuSystem;
+
+    [SerializeField] private AudioMixer mainAudio;
     
     public void RevivePlayer()
     {
@@ -34,7 +37,6 @@ public class Yandex : MonoBehaviour
     private void Start()
     {
         FindObjectOfType<RoomsGeneration>().OnNewRoomSpawn += OnNewRoomSpawnAdv;
-        mainAudioListener = FindObjectOfType<AudioListener>();
         menuSystem = FindObjectOfType<MenuSystem>();
     }
 
@@ -46,24 +48,30 @@ public class Yandex : MonoBehaviour
             return;
         
         roomSpawned = 0;
-        ShowAdv();
+
+        StartCoroutine(Wait());
+        
+        IEnumerator Wait()
+        {
+            yield return new WaitForSeconds(0.5f);
+            
+            ShowAdv();
+        }
     }
 
     public void AudioOn()
     {
-        print("audio ON");
-        mainAudioListener.enabled = true;
+        mainAudio.SetFloat("Volume", 0);
     }
 
     public void AudioOff()
     {
-        print("audio OFF");
-        mainAudioListener.enabled = false;
+        mainAudio.SetFloat("Volume", -80);
     }
 
     public void MenuBack()
     {
-        menuSystem.Back();
+        menuSystem.OpenLocalMenu("OnRoundMenu");
     }
     
 }

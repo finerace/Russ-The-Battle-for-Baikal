@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c426cc4d70e16448961e82a979834b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainAudio: {fileID: 24100000, guid: d732743888d560f4fba97835c7d80b64, type: 2}
 --- !u!4 &27424379
 Transform:
   m_ObjectHideFlags: 0
@@ -2503,7 +2504,8 @@ AudioSource:
   m_GameObject: {fileID: 406484683}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: d732743888d560f4fba97835c7d80b64,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: d3ffaa7db121dc847b3b471e669a45d8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.05
@@ -3877,7 +3879,7 @@ MonoBehaviour:
   weaponAttackAudioSource: {fileID: 406484685}
   weaponHitAudioSource: {fileID: 944193947}
   moneyAddSound:
-    audioMixerGroup: {fileID: 0}
+    audioMixerGroup: {fileID: 24300002, guid: d732743888d560f4fba97835c7d80b64, type: 2}
     clips:
     - {fileID: 8300000, guid: 95ec7ac48182c904d8fea28c50e49a8b, type: 3}
     castPos: {x: 0, y: 0, z: 0}
@@ -10021,7 +10023,8 @@ AudioSource:
   m_GameObject: {fileID: 944193945}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: d732743888d560f4fba97835c7d80b64,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: d3ffaa7db121dc847b3b471e669a45d8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.1
@@ -18195,7 +18198,8 @@ AudioSource:
   m_GameObject: {fileID: 1800257584}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: d732743888d560f4fba97835c7d80b64,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.035
@@ -18479,7 +18483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9932574a996521c47adf2ed3f719e277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMaxAudioSources: 30
+  startMaxAudioSources: 20
   spreadEffect: 0.35
 --- !u!1 &1877036399
 GameObject:
