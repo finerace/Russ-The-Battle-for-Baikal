@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class LocationShopData : MonoBehaviour
@@ -8,7 +9,8 @@ public class LocationShopData : MonoBehaviour
     [SerializeField] private int cost;
     [SerializeField] private GameObject room;
 
-    [SerializeField] private bool isSell;
+    [SerializeField] private bool isUnlocked;
+    public event Action onSell;
     
     public int ID => id;
 
@@ -20,10 +22,11 @@ public class LocationShopData : MonoBehaviour
 
     public GameObject Room => room;
 
-    public bool IsSell => isSell;
+    public bool IsUnlocked => isUnlocked;
 
-    public void Buy()
+    public void Unlock()
     {
-        isSell = true;
+        isUnlocked = true;
+        onSell?.Invoke();
     }
 }

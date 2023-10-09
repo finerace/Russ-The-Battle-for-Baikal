@@ -5645,8 +5645,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725e764d45bec65439f3befbdbdfbefb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
-  maxHealth: 30
+  health: 25
+  maxHealth: 25
   enemyT: {fileID: 8826830230451589333}
   enemyRb: {fileID: 8826830230451589335}
   groundCheckT: {fileID: 6257749452123608350}
@@ -5686,7 +5686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMain: {fileID: 8826830230451589329}
-  attackDamage: 15
+  attackDamage: 10
   damageAllowDistance: 2.6
   damageForce: 15
   preAttackDelay: 0.3

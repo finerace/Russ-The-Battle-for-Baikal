@@ -1342,7 +1342,7 @@ MonoBehaviour:
     \u044F\u0449\u0435\u0440\u0430\u043C\u0438. \u0422\u0443\u0442 \u043E\u043F\u0430\u0441\u043D\u043E."
   cost: 50
   room: {fileID: 8271534121175312046, guid: 6551b2bf062c78d46beab7372d188802, type: 3}
-  isSell: 0
+  isUnlocked: 0
 --- !u!1 &286366095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,7 +1401,7 @@ MonoBehaviour:
     \u0430\u0431\u0441\u043E\u043B\u044E\u0442\u043D\u043E\u0433\u043E \u0434\u043E\u043C\u0438\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F."
   cost: 800
   weapon: {fileID: 11400000, guid: 73c2798330336bf47881d6c8c2cbaa88, type: 2}
-  isSell: 0
+  isUnlocked: 0
 --- !u!114 &286366098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1500,7 +1500,7 @@ MonoBehaviour:
     \u0430\u0442\u0430\u043A\u0438."
   cost: 15
   weapon: {fileID: 11400000, guid: 9c5c236f4952afa4394637d5d2bb72bc, type: 2}
-  isSell: 0
+  isUnlocked: 0
 --- !u!114 &289359664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1827,7 +1827,7 @@ MonoBehaviour:
     \u0412\u0430\u0441 \u0441\u0440\u0430\u0437\u0443 \u0443\u043D\u0438\u0447\u0442\u043E\u0436\u0430\u0442."
   cost: 200
   room: {fileID: 8271534121175312046, guid: d3048413a90c0ba44acc0a4de2c06f64, type: 3}
-  isSell: 0
+  isUnlocked: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -3667,6 +3667,7 @@ Transform:
   - {fileID: 1343353260}
   - {fileID: 1800257585}
   - {fileID: 1870485924}
+  - {fileID: 1357016572}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11192,7 +11193,7 @@ MonoBehaviour:
     \u0412\u0440\u0430\u0433\u0438 \u0441\u043B\u0430\u0431\u044B\u0435."
   cost: 0
   room: {fileID: 8271534121175312046, guid: bf127ecd85ae8854ab118c240aaff2e6, type: 3}
-  isSell: 1
+  isUnlocked: 0
 --- !u!1 &1273873106
 GameObject:
   m_ObjectHideFlags: 0
@@ -11642,6 +11643,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 378d8324a65067d4c970e1e5670ee04f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1357016571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1357016572}
+  - component: {fileID: 1357016573}
+  m_Layer: 0
+  m_Name: SaveSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1357016572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357016571}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 15.332167}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 625854766}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1357016573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357016571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4a7fbcc3fcd8ef4fbc6c25d7205438d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMoneyService: {fileID: 223069149}
+  weaponShopDatas:
+  - {fileID: 2104186942}
+  - {fileID: 289359663}
+  - {fileID: 2015123920}
+  - {fileID: 1695840243}
+  - {fileID: 1360337067}
+  - {fileID: 1896116442}
+  - {fileID: 286366097}
+  locationShopDatas:
+  - {fileID: 1254591574}
+  - {fileID: 281617436}
+  - {fileID: 328400607}
 --- !u!1 &1360337065
 GameObject:
   m_ObjectHideFlags: 0
@@ -11702,7 +11760,7 @@ MonoBehaviour:
     \u0440\u0443\u0436\u044C\u0451."
   cost: 200
   weapon: {fileID: 11400000, guid: 1da8b13cbf4a1d04a8db084057edebba, type: 2}
-  isSell: 0
+  isUnlocked: 0
 --- !u!114 &1360337068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17819,7 +17877,7 @@ MonoBehaviour:
     \u043C\u0430\u0433\u043E\u0432, \u0434\u0430\u043B\u0435\u043A\u043E \u0441\u0442\u0440\u0435\u043B\u044F\u0435\u0442."
   cost: 100
   weapon: {fileID: 11400000, guid: d8616ee3669ea7748bdb0e1366704509, type: 2}
-  isSell: 0
+  isUnlocked: 0
 --- !u!114 &1695840244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18717,7 +18775,7 @@ MonoBehaviour:
     \u0430\u0431\u0441\u043E\u043B\u044E\u0442\u043D\u043E\u0439 \u043C\u043E\u0449\u043D\u043E\u0441\u0442\u0438."
   cost: 350
   weapon: {fileID: 11400000, guid: ba688200be4fd834e8300dbb7ff052ea, type: 2}
-  isSell: 0
+  isUnlocked: 0
 --- !u!114 &1896116443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19948,7 +20006,7 @@ MonoBehaviour:
     \u043C\u043E\u0449\u044C!"
   cost: 50
   weapon: {fileID: 11400000, guid: 5a9a6a0c7692dd448b0b789e11d2d39a, type: 2}
-  isSell: 0
+  isUnlocked: 0
 --- !u!114 &2015123921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20875,7 +20933,7 @@ MonoBehaviour:
     \u043C\u0430\u043B\u043E\u0439 \u043C\u043E\u0449\u043D\u043E\u0441\u0442\u0438."
   cost: 0
   weapon: {fileID: 11400000, guid: 5026f3d405bddcc41a46377d70c56021, type: 2}
-  isSell: 1
+  isUnlocked: 0
 --- !u!1001 &2123466794
 PrefabInstance:
   m_ObjectHideFlags: 0

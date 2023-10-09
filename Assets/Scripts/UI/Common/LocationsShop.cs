@@ -96,7 +96,7 @@ public class LocationsShop : MonoBehaviour
         
         if (focusedShopItem.ID == selectedShopItem.ID)
             buyButtonLabel.text = "Выбрано";
-        else if (focusedShopItem.IsSell)
+        else if (focusedShopItem.IsUnlocked)
             buyButtonLabel.text = "Выбрать";
         else 
             buyButtonLabel.text = "Открыть";
@@ -104,13 +104,13 @@ public class LocationsShop : MonoBehaviour
 
     public void BuyOrSelect()
     {
-        if (focusedShopItem.IsSell)
+        if (focusedShopItem.IsUnlocked)
         {
             selectedShopItem = focusedShopItem;
         }
         else if (playerMoneyService.TryTakeMoney(focusedShopItem.Cost))
         {
-            focusedShopItem.Buy();
+            focusedShopItem.Unlock();
             selectedShopItem = focusedShopItem;
         }
         
