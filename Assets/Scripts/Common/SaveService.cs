@@ -9,7 +9,7 @@ public class SaveService : MonoBehaviour
 
     private void Awake()
     {
-        playerMoneyService.OnMoneyChange += (int nul) => {SavePlayerMoney(playerMoneyService.PlayerMoney);};
+        playerMoneyService.OnMoneyChange += (int nul) => {SavePlayerMoney(playerMoneyService.PlayerMoney); PlayerPrefs.Save();};
         void SavePlayerMoney(int money)
         {
             PlayerPrefs.SetInt("PlayerMoney",money);
@@ -32,7 +32,7 @@ public class SaveService : MonoBehaviour
             if (PlayerPrefs.GetInt($"WeaponData_{weaponData.ID}") > 0)
                 weaponData.Unlock();
             else
-                weaponData.onSell += () => { PlayerPrefs.SetInt($"WeaponData_{weaponData.ID}", 1);};
+                weaponData.onSell += () => { PlayerPrefs.SetInt($"WeaponData_{weaponData.ID}", 1);PlayerPrefs.Save();};
         }
         
         foreach (var locationData in locationShopDatas)
@@ -40,7 +40,7 @@ public class SaveService : MonoBehaviour
             if(PlayerPrefs.GetInt($"LocationData_{locationData.ID}") > 0)
                 locationData.Unlock();
             else
-                locationData.onSell += () => { PlayerPrefs.SetInt($"WeaponData_{locationData.ID}", 1);};
+                locationData.onSell += () => { PlayerPrefs.SetInt($"LocationData_{locationData.ID}", 1);PlayerPrefs.Save();};
         }
     }
     
