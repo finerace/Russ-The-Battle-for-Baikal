@@ -53,7 +53,7 @@ public class Yandex : MonoBehaviour
         
         IEnumerator Wait()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1);
             
             ShowAdv();
         }

@@ -1,8 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Runtime.InteropServices;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public class SaveService : MonoBehaviour
@@ -15,15 +14,20 @@ public class SaveService : MonoBehaviour
 
     private void Awake()
     {
-        aLoadData();
-        
-        playerMoneyService.OnMoneyChange += (int nul) => {SavePlayerMoney(playerMoneyService.PlayerMoney); prefsData.Save();};
-        void SavePlayerMoney(int money)
+        StartCoroutine(Init());
+        IEnumerator Init()
         {
-            prefsData.SetInt("PlayerMoney",money);
+            prefsData = new SavedPrefsData();
+            yield return new WaitForSeconds(0.25f);
+            
+            aLoadData();
+
+            playerMoneyService.OnMoneyChange += (int nul) => {SavePlayerMoney(playerMoneyService.PlayerMoney); prefsData.Save();};
+            void SavePlayerMoney(int money)
+            {
+                prefsData.SetInt("PlayerMoney",money);
+            }
         }
-        
-        InitSavedData();
     }
     
     private void InitSavedData()
@@ -34,6 +38,8 @@ public class SaveService : MonoBehaviour
         {
             prefsData.SetInt("IsFirstPlay",1);
             prefsData.SetInt("PlayerMoney", playerMoneyService.PlayerMoney);
+            
+            prefsData.Save();
         }
         foreach (var weaponData in weaponShopDatas)
         {
@@ -60,8 +66,8 @@ public class SaveService : MonoBehaviour
 
     public void LoadDataa(string JsonData)
     {
-        prefsData = new SavedPrefsData();
         prefsData.Load(JsonData);
+        InitSavedData();
     }
     
     public static JsonDictionary<TKey,TValue> GetJsonVersion<TKey,TValue>(Dictionary<TKey,TValue> dictionary)
@@ -139,10 +145,7 @@ public class SaveService : MonoBehaviour
 
         public void Load(string jsonData)
         {
-            playerPrefsJson = new JsonDictionary<string, int>(playerPrefs);
-            JsonUtility.FromJsonOverwrite(jsonData,playerPrefsJson);
-
-            JsonToNormal(playerPrefsJson, playerPrefs);
+            JsonToNormal(JsonUtility.FromJson<JsonDictionary<string,int>>(jsonData), playerPrefs);
         }
         
         

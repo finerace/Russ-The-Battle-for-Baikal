@@ -77,14 +77,22 @@ MyGameInstance.SendMessage("Yandex", "AudioOff");
 aSaveData: function(data) {
 var dataString = UTF8ToString(data);
 var myobj = JSON.parse(dataString);
+if(player.getMode() !== "lite")
+{
 player.setData(myobj);
+console.log(dataString);
+}
 },
 
 aLoadData: function() {
+if(player.getMode() !== "lite")
+{
 player.getData().then(_data => {
 const myJSON = JSON.stringify(_data);
 MyGameInstance.SendMessage("SaveSystem", "LoadDataa", myJSON);
-});
+console.log(myJSON);
+})
+};
 },
 
 });
