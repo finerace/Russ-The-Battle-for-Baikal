@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -15,10 +14,17 @@ public class Yandex : MonoBehaviour
     
     [DllImport("__Internal")]
     public static extern void ShowAdvDouble();
+    
+    [DllImport("__Internal")]
+    public static extern void OpenAuthDialog();
+    
+    [DllImport("__Internal")]
+    public static extern void CheckPlayerAuth();
 
     private MenuSystem menuSystem;
 
     [SerializeField] private AudioMixer mainAudio;
+    [SerializeField] private GameObject authWindow;
     
     public void RevivePlayer()
     {
@@ -32,31 +38,26 @@ public class Yandex : MonoBehaviour
         FindObjectOfType<MenuSystem>().Back();
     }
 
-    private int roomSpawned;
+    private int advShowCount;
     
     private void Start()
     {
-        FindObjectOfType<RoomsGeneration>().OnNewRoomSpawn += OnNewRoomSpawnAdv;
+        FindObjectOfType<GameEvents>().OnRoundEnd += OnRoundEndShowAdv;
         menuSystem = FindObjectOfType<MenuSystem>();
+
+        CheckPlayerAuth();
     }
 
-    private void OnNewRoomSpawnAdv()
+    private void OnRoundEndShowAdv()
     {
-        roomSpawned++;
+        advShowCount++;
 
-        if (roomSpawned < 4) 
+        if (advShowCount < 3) 
             return;
         
-        roomSpawned = 0;
+        advShowCount = 0;
 
-        StartCoroutine(Wait());
-        
-        IEnumerator Wait()
-        {
-            yield return new WaitForSeconds(1);
-            
-            ShowAdv();
-        }
+        ShowAdv();
     }
 
     public void AudioOn()
@@ -72,6 +73,16 @@ public class Yandex : MonoBehaviour
     public void MenuBack()
     {
         menuSystem.OpenLocalMenu("OnRoundMenu");
+    }
+
+    public void OpenAuthMenu()
+    {
+        authWindow.SetActive(true);
+    }
+
+    public void OpenAuthDialogEvent()
+    {
+        OpenAuthDialog();
     }
     
 }
