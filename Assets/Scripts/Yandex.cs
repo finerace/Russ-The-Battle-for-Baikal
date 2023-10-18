@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -56,8 +58,13 @@ public class Yandex : MonoBehaviour
             return;
         
         advShowCount = 0;
-
-        ShowAdv();
+        
+        StartCoroutine(AdvWait());
+        IEnumerator AdvWait()
+        {
+            yield return new WaitForSeconds(0.25f);
+            ShowAdv();    
+        }
     }
 
     public void AudioOn()
@@ -78,6 +85,11 @@ public class Yandex : MonoBehaviour
     public void OpenAuthMenu()
     {
         authWindow.SetActive(true);
+    }
+    
+    public void CloseAuthMenu()
+    {
+        authWindow.SetActive(false);
     }
 
     public void OpenAuthDialogEvent()

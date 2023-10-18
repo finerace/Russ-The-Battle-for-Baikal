@@ -69,6 +69,11 @@ public class SaveService : MonoBehaviour
         prefsData.Load(JsonData);
         InitSavedData();
     }
+
+    public void LoadDataAUTH()
+    {
+        aLoadData();
+    }
     
     public static JsonDictionary<TKey,TValue> GetJsonVersion<TKey,TValue>(Dictionary<TKey,TValue> dictionary)
     {

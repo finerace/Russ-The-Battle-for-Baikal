@@ -2,26 +2,34 @@ mergeInto(LibraryManager.library, {
 	
 	OpenAuthDialog: function(){
 		ysdk.auth.openAuthDialog().then(() => {
-			ysdk.getPlayer({scopes: false}).then(_player => {
+			
+			player = null;
+			initPlayer().then(_player => {
 				player = _player;
+
+				MyGameInstance.SendMessage("SaveSystem","LoadDataAUTH");
+				MyGameInstance.SendMessage("Yandex","CloseAuthMenu");
+				console.log('Player InAuth YES');
+
 			}).catch(err => {
-      		// Ошибка при инициализации объекта Player.
-  			});
-			aLoadData();
-		});
+        		console.log('Player InAuth init ERROR');
+        		console.log(err);
+    		});
+
+		}).catch(() => {
+			console.log('Player InAuth ERROR');
+                });
 	},
 
 	CheckPlayerAuth: function(){
 		if (player.getMode() === 'lite')
             {
-                player.SendMessage("Yandex","OpenAuthMenu");
+                MyGameInstance.SendMessage("Yandex","OpenAuthMenu");
             }
 	},
 
 	ShowAdv : function () {
 		MyGameInstance.SendMessage("Yandex", "AudioOff");
-		MyGameInstance.SendMessage("Yandex", "MenuBack");		
-
 		ysdk.adv.showFullscreenAdv({
 			callbacks: {
 				onClose: function(wasShown) {
