@@ -11,7 +11,7 @@ public class RoundStats : MonoBehaviour
     private void Start()
     {
         var gameEvents = FindObjectOfType<GameEvents>();
-        gameEvents.OnRoundEnd += OnRoundEnd;
+        gameEvents.OnRoundStart += OnRoundStart;
 
         var playerMoney = FindObjectOfType<PlayerMoneyService>();
         playerMoney.OnMoneyChange += AddEarnedCoins;
@@ -29,6 +29,12 @@ public class RoundStats : MonoBehaviour
     }
 
     private void OnRoundEnd()
+    {
+        isReviveUsed = false;
+        earnedCoinsOnRound = 0;
+    }
+    
+    private void OnRoundStart()
     {
         isReviveUsed = false;
         earnedCoinsOnRound = 0;

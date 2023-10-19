@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -35,12 +33,16 @@ public class Yandex : MonoBehaviour
 
     public void DoubleCoins()
     {
+        if (roundsCount >= neededRoundsToShowAdv)
+            roundsCount--;
+        
         FindObjectOfType<DoubleReward>().AddReward();
         FindObjectOfType<GameEvents>().EndRound();
         FindObjectOfType<MenuSystem>().Back();
     }
 
-    private int advShowCount;
+    private int roundsCount;
+    private readonly int neededRoundsToShowAdv = 1;
     
     private void Start()
     {
@@ -52,12 +54,12 @@ public class Yandex : MonoBehaviour
 
     private void OnRoundEndShowAdv()
     {
-        advShowCount++;
-
-        if (advShowCount < 3) 
+        roundsCount++;
+        
+        if (roundsCount <= neededRoundsToShowAdv) 
             return;
         
-        advShowCount = 0;
+        roundsCount = 0;
         
         StartCoroutine(AdvWait());
         IEnumerator AdvWait()
@@ -70,11 +72,19 @@ public class Yandex : MonoBehaviour
     public void AudioOn()
     {
         mainAudio.SetFloat("Volume", 0);
+        StartCoroutine(SetTimeScale(1));
     }
 
     public void AudioOff()
     {
         mainAudio.SetFloat("Volume", -80);
+        StartCoroutine(SetTimeScale(0));
+    }
+
+    IEnumerator SetTimeScale(float timeScale)
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        Time.timeScale = timeScale;
     }
 
     public void MenuBack()
