@@ -14,12 +14,6 @@ public class Yandex : MonoBehaviour
     
     [DllImport("__Internal")]
     public static extern void ShowAdvDouble();
-    
-    [DllImport("__Internal")]
-    public static extern void OpenAuthDialog();
-    
-    [DllImport("__Internal")]
-    public static extern void CheckPlayerAuth();
 
     private MenuSystem menuSystem;
 
@@ -48,8 +42,6 @@ public class Yandex : MonoBehaviour
     {
         FindObjectOfType<GameEvents>().OnRoundEnd += OnRoundEndShowAdv;
         menuSystem = FindObjectOfType<MenuSystem>();
-
-        CheckPlayerAuth();
     }
 
     private void OnRoundEndShowAdv()
@@ -94,17 +86,7 @@ public class Yandex : MonoBehaviour
 
     public void OpenAuthMenu()
     {
-        authWindow.SetActive(true);
-    }
-    
-    public void CloseAuthMenu()
-    {
-        authWindow.SetActive(false);
-    }
-
-    public void OpenAuthDialogEvent()
-    {
-        OpenAuthDialog();
+        //authWindow.SetActive(true);
     }
     
 }

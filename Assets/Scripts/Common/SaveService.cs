@@ -10,29 +10,30 @@ public class SaveService : MonoBehaviour
 
     [SerializeField] private WeaponShopData[] weaponShopDatas;
     [SerializeField] private LocationShopData[] locationShopDatas;
-    private SavedPrefsData prefsData;
+    //private SavedPrefsData prefsData;
 
     private void Awake()
     {
         StartCoroutine(Init());
         IEnumerator Init()
         {
-            prefsData = new SavedPrefsData();
+           // prefsData = new SavedPrefsData();
             yield return new WaitForSeconds(0.25f);
             
-            aLoadData();
-
-            playerMoneyService.OnMoneyChange += (int nul) => {SavePlayerMoney(playerMoneyService.PlayerMoney); prefsData.Save();};
+            //aLoadData();
+            InitSavedData();
+            
+            playerMoneyService.OnMoneyChange += (int nul) => {SavePlayerMoney(playerMoneyService.PlayerMoney); PlayerPrefs.Save();};
             void SavePlayerMoney(int money)
             {
-                prefsData.SetInt("PlayerMoney",money);
+                PlayerPrefs.SetInt("PlayerMoney",money);
             }
         }
     }
     
     private void InitSavedData()
     {
-        if (prefsData.GetInt("IsFirstPlay") > 0)
+        /*if (prefsData.GetInt("IsFirstPlay") > 0)
             playerMoneyService.PlayerMoney = prefsData.GetInt("PlayerMoney");
         else
         {
@@ -55,10 +56,35 @@ public class SaveService : MonoBehaviour
                 locationData.Unlock();
             else
                 locationData.onSell += () => { prefsData.SetInt($"LocationData_{locationData.ID}", 1);prefsData.Save();};
+        }*/
+        
+        if (PlayerPrefs.GetInt("IsFirstPlay") > 0)
+            playerMoneyService.PlayerMoney = PlayerPrefs.GetInt("PlayerMoney");
+        else
+        {
+            PlayerPrefs.SetInt("IsFirstPlay",1);
+            PlayerPrefs.SetInt("PlayerMoney", playerMoneyService.PlayerMoney);
+            
+            PlayerPrefs.Save();
+        }
+        foreach (var weaponData in weaponShopDatas)
+        {
+            if (PlayerPrefs.GetInt($"WeaponData_{weaponData.ID}") > 0)
+                weaponData.Unlock();
+            else
+                weaponData.onSell += () => { PlayerPrefs.SetInt($"WeaponData_{weaponData.ID}", 1);PlayerPrefs.Save();};
+        }
+        
+        foreach (var locationData in locationShopDatas)
+        {
+            if(PlayerPrefs.GetInt($"LocationData_{locationData.ID}") > 0)
+                locationData.Unlock();
+            else
+                locationData.onSell += () => { PlayerPrefs.SetInt($"LocationData_{locationData.ID}", 1);PlayerPrefs.Save();};
         }
     }
 
-    [DllImport("__Internal")]
+    /*[DllImport("__Internal")]
     private static extern void aSaveData(string data);
 
     [DllImport("__Internal")]
@@ -74,35 +100,35 @@ public class SaveService : MonoBehaviour
     {
         aLoadData();
     }
-    
-    public static JsonDictionary<TKey,TValue> GetJsonVersion<TKey,TValue>(Dictionary<TKey,TValue> dictionary)
+
+    public static JsonDictionary<TKey, TValue> GetJsonVersion<TKey, TValue>(Dictionary<TKey, TValue> dictionary)
     {
         var jsonDictionary = new JsonDictionary<TKey, TValue>(dictionary);
 
         return jsonDictionary;
     }
-    
-    public static void JsonToNormal<TKey,TValue> (JsonDictionary<TKey,TValue> jsonDictionary, Dictionary<TKey,TValue> normalDictionary)
+
+    public static void JsonToNormal<TKey, TValue>(JsonDictionary<TKey, TValue> jsonDictionary,
+        Dictionary<TKey, TValue> normalDictionary)
     {
         normalDictionary.Clear();
-        
+
         for (int i = 0; i < jsonDictionary.keys.Count; i++)
         {
             var jsonKey = jsonDictionary.keys[i];
             var jsonValue = jsonDictionary.values[i];
-            
-            normalDictionary.Add(jsonKey,jsonValue);
+
+            normalDictionary.Add(jsonKey, jsonValue);
         }
-        
     }
-    
+
     [Serializable]
-    public class JsonDictionary<TKey,TValue>
+    public class JsonDictionary<TKey, TValue>
     {
         public List<TKey> keys = new List<TKey>();
         public List<TValue> values = new List<TValue>();
 
-        public JsonDictionary(Dictionary<TKey,TValue> dictionary)
+        public JsonDictionary(Dictionary<TKey, TValue> dictionary)
         {
             foreach (var key in dictionary.Keys)
             {
@@ -115,7 +141,7 @@ public class SaveService : MonoBehaviour
             }
         }
     }
-    
+
     [Serializable]
     private class SavedPrefsData
     {
@@ -124,16 +150,16 @@ public class SaveService : MonoBehaviour
 
         public int GetInt(string key)
         {
-            if(!playerPrefs.ContainsKey(key))
-                playerPrefs.Add(key,0);
-            
+            if (!playerPrefs.ContainsKey(key))
+                playerPrefs.Add(key, 0);
+
             return playerPrefs[key];
         }
 
         public void SetInt(string key, int value)
         {
-            if(!playerPrefs.ContainsKey(key))
-                playerPrefs.Add(key,value);
+            if (!playerPrefs.ContainsKey(key))
+                playerPrefs.Add(key, value);
 
             playerPrefs[key] = value;
         }
@@ -141,8 +167,8 @@ public class SaveService : MonoBehaviour
         public void Save()
         {
             playerPrefsJson = GetJsonVersion(playerPrefs);
-            
-            var jsonSave = 
+
+            var jsonSave =
                 JsonUtility.ToJson(playerPrefsJson);
 
             aSaveData(jsonSave);
@@ -150,11 +176,11 @@ public class SaveService : MonoBehaviour
 
         public void Load(string jsonData)
         {
-            JsonToNormal(JsonUtility.FromJson<JsonDictionary<string,int>>(jsonData), playerPrefs);
+            if (jsonData == null)
+                return;
+
+            JsonToNormal(JsonUtility.FromJson<JsonDictionary<string, int>>(jsonData), playerPrefs);
         }
-        
-        
-        
-    }
+    }*/
     
 }

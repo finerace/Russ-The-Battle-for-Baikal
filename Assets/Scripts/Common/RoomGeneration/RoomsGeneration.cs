@@ -108,7 +108,7 @@ public class RoomsGeneration : MonoBehaviour
         if(currentRoom == null)
             return;
         
-        if(currentRoom.RoomCenterPoint.position != firstRoom.RoomCenterPoint.position)
+        if(currentRoom.gameObject.name != firstRoom.gameObject.name)
             currentRoom.DestroyRoom();
     }
     

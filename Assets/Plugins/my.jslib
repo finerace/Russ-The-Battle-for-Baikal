@@ -101,25 +101,33 @@ mergeInto(LibraryManager.library, {
 		})
 	},
 
-	aSaveData: function(data) {
-		var dataString = UTF8ToString(data);
-		var myobj = JSON.parse(dataString);
-		if(player.getMode() !== "lite")
-		{
-			player.setData(myobj);
-			console.log(dataString);
+	aSaveData : function(data) {
+
+		console.log(data);
+
+		try {
+			localStorage.setItem(UTF8ToString("saveKey"), UTF8ToString(data));
+		}
+		catch (e) {
+			console.error('Save to Local Storage error: ', e.message);
 		}
 	},
 
-	aLoadData: function() {
-		if(player.getMode() !== "lite")
+	aLoadData : function() {
+		var returnStr = localStorage.getItem(UTF8ToString("saveKey"));
+		
+		if(returnStr == null)
 		{
-			player.getData().then(_data => {
-				const myJSON = JSON.stringify(_data);
-				MyGameInstance.SendMessage("SaveSystem", "LoadDataa", myJSON);
-				console.log(myJSON);
-			})
-		};
+			return null;
+		}
+
+		var bufferSize = lengthBytesUTF8(returnStr) + 1;
+		var buffer = _malloc(bufferSize);
+		stringToUTF8(returnStr, buffer, bufferSize);
+
+		console.log(buffer);
+
+		return buffer;
 	},
 
 });
